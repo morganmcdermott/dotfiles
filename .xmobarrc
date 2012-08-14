@@ -1,0 +1,18 @@
+Config { font = "xft:Terminus:pixelsize=12"
+       , bgColor = "#000000"
+       , fgColor = "grey"
+       , position = TopW L 100
+       , lowerOnStart = True
+       , commands = [ Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Swap [] 10
+                    , Run Date "%a %b %_d %l:%M" "date" 10
+                    , Run StdinReader
+                    --, Run Battery ["-l", "#FF0000"] 600
+                    , Run CoreTemp ["-t","<core0>","-L","40","-H","60","-l","lightblue","-n","orange","-h","red"] 50
+                    --, Run Com "/home/personal/scripts/volume.sh" [] "vol" 10
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %cpu% Temp: %coretemp% %memory% %swap% <fc=#ee9a00>%date%</fc>"
+       }
